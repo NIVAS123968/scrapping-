@@ -1,0 +1,12 @@
+library(robotstxt)
+path<-paths_allowed("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now/")
+library(rvest)
+link<-"https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now/"
+web<-read_html(link)
+library(dplyr)
+webseries_name<-web%>%html_nodes(".article_movie_title a")%>%html_text()
+webseries_year<-web%>%html_nodes(".start-year")%>%html_text()
+View(webseries_year)
+View(webseries_name)
+webseries_IMDB<-data.frame(webseries_name,webseries_year)
+View(webseries_IMDB)
